@@ -32,7 +32,7 @@ df - a data frame with x and frequency
 Generate a distribution from a two Gaussian mixture
 }
 \examples{
-# library(pkgname)
+library(particlesizeR)
 data <- gen.two.gaussian.dist(0.5, 0.5, 1.0, 10.0, 3.0, 0, 20, 0.1)
 
 }
