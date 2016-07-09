@@ -18,6 +18,8 @@
 #' 
 #' @importFrom stats rnorm runif
 #' 
+#' @importFrom mixtools normalmixEM
+#' 
 #' @export
 #' 
 #' @examples

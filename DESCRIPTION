@@ -1,12 +1,13 @@
 Package: particlesizeR
-Title: Convevenience functions for particle size analys9s
-Version: 0.0.0.1
+Title: Convevenience functions for particle size analysis
+Version: 0.0.0.11
 Authors@R: person("Minter", "John", email= "jrminter@gmail.com", role = c("aut", "cre"))
 Maintainer: John Minter <jrminter@gmail.com>
 Description: This package provides convenience functions for particle size analysis. 
 Depends:
     R (>= 3.2.0),
-    stats
+    stats,
+    mixtools
 Suggests:
     testthat,
     knitr

@@ -1,0 +1,78 @@
+---
+title: "Test Gaussian Mixture"
+author: "John Minter"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Test Gaussian Mixture}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+First, let's load the required packages.
+
+```{r}
+library(particlesizeR)
+library(mixtools)
+```
+
+Now, let's generate a two Gaussian mixture. Because we consider this a particle size distribution, we need to require the values to be positive.
+
+```{r}
+samples <- gen.two.gaussian.mixture(10000, 0.5, 3.0, 1.0, 12.0, 2.0)
+samples <- samples[samples > 0]
+```
+
+Let's now construct a histogram object. This will give us access to arrays of midpoints and density values.
+
+```{r, fig.width=7}
+o.mar <- par("mar")
+par(mar=c(4.1,4.1,0,0.5))
+his <- hist(samples, breaks=250, freq=FALSE, main="")
+par(mar=o.mar)
+```
+
+Eventually, we want to plot the results. We will build a plot from base graphics because we have a lot of control. We will also generate a series of x (diameter) values to model.
+
+```{r, fig.width=7}
+o.mar <- par("mar")
+par(mar=c(4.1,4.1,0,0.5))
+x = seq(0,20,.1)
+x1 <- min(samples)
+x2 <- max(samples)
+truth <- gen.two.gaussian.dist(0.5, 3.0, 1.0, 12.0, 2.0, 0, 20, 0.1)
+ymax <- 1.1*max(max(his$density), max(truth[,2]))
+plot(c(x1, x2), c(0., ymax), type='n', xlab='x', ylab='density')
+points(his$mids, his$density, pch=19, cex=0.75)
+lines(truth[, 1], truth[, 2],col="red",lwd=4)
+par(mar=o.mar)
+```
+
+We want to compute the mixture model. We will make a guess at the parameters from the histogram.
+
+```{r}
+out <- normalmixEM(samples, lambda=0.5, mu=c( 2, 9.), sigma=c(.8, 2.))
+```
+
+We can now compute the fitted values:
+
+```{r}
+fit <- out$lambda[1]*dnorm(x, out$mu[1], out$sigma[1]) + 
+       out$lambda[2]*dnorm(x, out$mu[2],out$sigma[2])
+```
+
+And make a final plot.
+
+
+```{r, fig.width=7, fig.height=5}
+o.mar <- par("mar")
+par(mar=c(4.1,4.1,0.5,0.5))
+plot(c(x1, x2), c(0., ymax), type='n', xlab='x', ylab='density')#, 
+#    main="Density Estimate of the Gaussian Mixture Model")
+points(his$mids, his$density, pch=19, cex=0.75)
+lines(truth[, 1], truth[, 2],col="red",lwd=6)
+lines(x, fit, col="blue", lwd=2)
+legend("topright", c("True Density","Estimated Density", "fit"),
+       col=c("black","red", "blue"), lwd=c(NA, 4, 2), pch=c(19,NA,NA))
+par(mar=o.mar)
+```

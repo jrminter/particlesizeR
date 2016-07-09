@@ -2,6 +2,7 @@
 
 export(gen.two.gaussian.dist)
 export(gen.two.gaussian.mixture)
+importFrom(mixtools,normalmixEM)
 importFrom(stats,dnorm)
 importFrom(stats,rnorm)
 importFrom(stats,runif)
