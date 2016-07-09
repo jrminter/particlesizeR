@@ -18,7 +18,7 @@
 #' 
 #' @param rn.seed - the random number seed (default 42)
 #' 
-#' @return dist - a vector of samples
+#' @return df - a data frame with x and frequency
 #' 
 #' @importFrom stats dnorm
 #' 
@@ -26,13 +26,14 @@
 #' 
 #' @examples
 #' # library(pkgname)
-#' samples <- gen.two.gaussian.dist(0.5, 0.5, 1.0, 10.0, 3.0, 0, 20, 0.1)
+#' data <- gen.two.gaussian.dist(0.5, 0.5, 1.0, 10.0, 3.0, 0, 20, 0.1)
 #' 
 #' @export
 gen.two.gaussian.dist <- function(p1, mu1, s1, mu2, s2,
                                   start, stop, step, rn.seed=42){
   set.seed(rn.seed)
-  x = seq(start, stop, step)
-  dist = p1*dnorm(x, mu1, s1) + (1.0-p1)*dnorm(x, mu2, s2)
-  return(dist)
+  x <- seq(start, stop, step)
+  dist <- p1*dnorm(x, mu1, s1) + (1.0-p1)*dnorm(x, mu2, s2)
+  df <- data.frame(x=x, dist=dist)
+  return(df)
 }

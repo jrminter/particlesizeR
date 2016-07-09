@@ -26,14 +26,14 @@ gen.two.gaussian.dist(p1, mu1, s1, mu2, s2, start, stop, step, rn.seed = 42)
 \item{rn.seed}{- the random number seed (default 42)}
 }
 \value{
-dist - a vector of samples
+df - a data frame with x and frequency
 }
 \description{
 Generate a distribution from a two Gaussian mixture
 }
 \examples{
 # library(pkgname)
-samples <- gen.two.gaussian.dist(0.5, 0.5, 1.0, 10.0, 3.0, 0, 20, 0.1)
+data <- gen.two.gaussian.dist(0.5, 0.5, 1.0, 10.0, 3.0, 0, 20, 0.1)
 
 }
 
