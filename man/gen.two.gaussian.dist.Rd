@@ -4,7 +4,8 @@
 \alias{gen.two.gaussian.dist}
 \title{Generate a distribution from a two Gaussian mixture}
 \usage{
-gen.two.gaussian.dist(p1, mu1, s1, mu2, s2, start, stop, step, rn.seed = 42)
+gen.two.gaussian.dist(p1, mu1, s1, mu2, s2, start, stop, step,
+  rn.seed = 42)
 }
 \arguments{
 \item{p1}{- the fractiona probability of the first Gaussian (< 1.0)}
@@ -36,4 +37,3 @@ library(particlesizeR)
 data <- gen.two.gaussian.dist(0.5, 0.5, 1.0, 10.0, 3.0, 0, 20, 0.1)
 
 }
-

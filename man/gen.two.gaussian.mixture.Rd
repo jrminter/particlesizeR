@@ -32,4 +32,3 @@ library(particlesizeR)
 samples <- gen.two.gaussian.mixture(10000, 0.5, 0.5, 1.0, 10.0, 3.0)
 
 }
-

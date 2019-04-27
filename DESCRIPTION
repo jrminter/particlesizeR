@@ -1,6 +1,6 @@
 Package: particlesizeR
 Title: Convevenience functions for particle size analysis
-Version: 0.0.0.11
+Version: 0.0.0.12
 Authors@R: person("Minter", "John", email= "jrminter@gmail.com", role = c("aut", "cre"))
 Maintainer: John Minter <jrminter@gmail.com>
 Description: This package provides convenience functions for particle size analysis. 
@@ -14,4 +14,5 @@ Suggests:
 License: GPL
 LazyData: true
 VignetteBuilder: knitr
-RoxygenNote: 5.0.1
+RoxygenNote: 6.1.1
+Encoding: UTF-8
