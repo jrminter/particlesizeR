@@ -16,10 +16,11 @@
 #'
 #' @examples
 #' library(particlesizeR)
-#' vec1 <- rnorm(1000, mean=50, sd=1)
-#' vec2 <- rnorm(1000, mean=75, sd=1.2)
-#' vec <- vec1 + vec2
-#' ggplot_ecd(vec, 0.2, "test", "nm")
+#' # simulate a complicated distribution
+#' vec1 <- rnorm(500, mean=85, sd=2)
+#' vec2 <- rnorm(1000, mean=90, sd=2)
+#' vec <- c(vec1, vec2)
+#" ggplot_ecd(vec, 0.2, "test", "nm")
 #'
 #' @export
 #'
