@@ -86,13 +86,21 @@ print(plt)
 
 We want to compute the mixture model. We will make a guess at the parameters from the histogram.
 
-```{r}
+```{r mixModel}
 out <- normalmixEM(samples, lambda=0.5, mu=c( 2, 9.), sigma=c(.8, 2.))
+
+print("lambda")
+print(out$lambda)
+print("mu")
+print(out$mu)
+print("sigma")
+print(out$sigma)
 ```
 
 We can now compute the fitted values:
 
 ```{r}
+x=100
 fit <- out$lambda[1]*dnorm(x, out$mu[1], out$sigma[1]) + 
        out$lambda[2]*dnorm(x, out$mu[2],out$sigma[2])
 ```
