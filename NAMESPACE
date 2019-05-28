@@ -2,7 +2,10 @@
 
 export(gen_two_gaussian_dist)
 export(gen_two_gaussian_mixture)
+export(ggplot_ecd)
+import(ggplot2)
 importFrom(mixtools,normalmixEM)
 importFrom(stats,dnorm)
+importFrom(stats,median)
 importFrom(stats,rnorm)
 importFrom(stats,runif)
