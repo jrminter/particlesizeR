@@ -1,6 +1,6 @@
 Package: particlesizeR
-Title: Convevenience functions for particle size analysis
-Version: 0.0.0.12
+Title: Convenience functions for particle size analysis
+Version: 0.0.0.13
 Authors@R: person("Minter", "John", email= "jrminter@gmail.com", role = c("aut", "cre"))
 Maintainer: John Minter <jrminter@gmail.com>
 Description: This package provides convenience functions for particle size analysis. 
