@@ -14,6 +14,7 @@ First, let's load the required packages.
 ```{r}
 library(particlesizeR)
 library(mixtools)
+library(ggplot2)
 ```
 
 Now, let's generate a two Gaussian mixture. Because we consider this a particle size distribution, we need to require the values to be positive.
@@ -25,28 +26,63 @@ samples <- samples[samples > 0]
 
 Let's now construct a histogram object. This will give us access to arrays of midpoints and density values.
 
-```{r, fig.width=7}
-o.mar <- par("mar")
-par(mar=c(4.1,4.1,0,0.5))
-his <- hist(samples, breaks=250, freq=FALSE, main="")
-par(mar=o.mar)
+```{r first_plot, fig.width=7}
+library(ggplot2)
+
+df <- data.frame(samples=samples)
+plt <- ggplot(df, aes(x=samples)) + geom_histogram(bins=250)
+print(plt)
 ```
 
-Eventually, we want to plot the results. We will build a plot from base graphics because we have a lot of control. We will also generate a series of x (diameter) values to model.
+Let's look at what is in a ggplot2 histogram, starting at the beginning:
 
-```{r, fig.width=7}
-o.mar <- par("mar")
-par(mar=c(4.1,4.1,0,0.5))
-x = seq(0,20,.1)
-x1 <- min(samples)
-x2 <- max(samples)
+```{r examine_histo_head}
+pg <- ggplot_build(plt)
+head(pg$data[[1]])
+```
+Note that we have access to a vector of midpoints (`x`) as well as a vector
+of lower boundaries (`xmin`) and a vector of upper boundaries (`xmax`) as
+well as the `density` and the `ncount`. 
+
+
+Next, look at the end of the data...
+
+```{r examine_histo_tail}
+tail(pg$data[[1]])
+```
+
+Eventually, we want to plot the results. We will build a plot using the newer
+`ggplot2` package. We will also generate a series of x (diameter) values to
+model.
+
+First, we will generate the data
+
+```{r generate_data}
+#x = seq(0, 20, 0.1)
+#x1 <- min(samples)
+# x2 <- max(samples)
 truth <- gen_two_gaussian_dist(0.5, 3.0, 1.0, 12.0, 2.0, 0, 20, 0.1)
-ymax <- 1.1*max(max(his$density), max(truth[,2]))
-plot(c(x1, x2), c(0., ymax), type='n', xlab='x', ylab='density')
-points(his$mids, his$density, pch=19, cex=0.75)
-lines(truth[, 1], truth[, 2],col="red",lwd=4)
-par(mar=o.mar)
+
+print(c(min(truth), max(truth)))
+print(head(truth))
 ```
+
+```{r, fig.width=7}
+df_work <- data.frame(diam=pg$data[[1]]$x, count=pg$data[[1]]$count)
+plt <- ggplot(df_work, aes(diam,count)) + geom_point() +
+       geom_line(data=truth, aes(x,800*dist), colour='darkred', size=2)+
+       ylab("count") + # note the Unicode string for mu
+       xlab("diameter [nm]") +
+       ggtitle("Diameter distribution of two Gaussian distributions") +
+       theme(axis.text=element_text(size=12), axis.title=element_text(size=14),
+              plot.title = element_text(hjust = 0.5)) # center the title
+print(plt)
+
+
+
+
+```
+
 
 We want to compute the mixture model. We will make a guess at the parameters from the histogram.
 
@@ -61,7 +97,7 @@ fit <- out$lambda[1]*dnorm(x, out$mu[1], out$sigma[1]) +
        out$lambda[2]*dnorm(x, out$mu[2],out$sigma[2])
 ```
 
-And make a final plot.
+And make a final plot. [Need to move this to ggplot2]
 
 
 ```{r, fig.width=7, fig.height=5}

@@ -7,6 +7,7 @@ Description: This package provides convenience functions for particle size analy
 Depends:
     R (>= 3.2.0),
     stats,
+    ggplot2,
     mixtools
 Suggests:
     testthat,

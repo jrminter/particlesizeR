@@ -3,7 +3,7 @@ library(particlesizeR)
 library(mixtools)
 
 ## ------------------------------------------------------------------------
-samples <- gen.two.gaussian.mixture(10000, 0.5, 3.0, 1.0, 12.0, 2.0)
+samples <- gen_two_gaussian_mixture(10000, 0.5, 3.0, 1.0, 12.0, 2.0)
 samples <- samples[samples > 0]
 
 ## ---- fig.width=7--------------------------------------------------------
@@ -18,7 +18,7 @@ par(mar=c(4.1,4.1,0,0.5))
 x = seq(0,20,.1)
 x1 <- min(samples)
 x2 <- max(samples)
-truth <- gen.two.gaussian.dist(0.5, 3.0, 1.0, 12.0, 2.0, 0, 20, 0.1)
+truth <- gen_two_gaussian_dist(0.5, 3.0, 1.0, 12.0, 2.0, 0, 20, 0.1)
 ymax <- 1.1*max(max(his$density), max(truth[,2]))
 plot(c(x1, x2), c(0., ymax), type='n', xlab='x', ylab='density')
 points(his$mids, his$density, pch=19, cex=0.75)
