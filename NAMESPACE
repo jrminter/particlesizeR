@@ -2,8 +2,12 @@
 
 export(gen_two_gaussian_dist)
 export(gen_two_gaussian_mixture)
+export(ggplot_circ)
 export(ggplot_ecd)
+export(ggplot_ecd_boxplot)
+export(ggplot_ecd_qq_plot)
 import(ggplot2)
+import(gridExtra)
 importFrom(mixtools,normalmixEM)
 importFrom(stats,dnorm)
 importFrom(stats,median)

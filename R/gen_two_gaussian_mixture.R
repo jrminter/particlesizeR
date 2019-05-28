@@ -25,8 +25,7 @@
 #' @examples
 #' library(particlesizeR)
 #' samples <- gen_two_gaussian_mixture(10000, 0.5, 0.5, 1.0, 10.0, 3.0)
-#' 
-#' @export
+#'
 gen_two_gaussian_mixture <- function(n, p1, mu1, s1, mu2, s2, rn_seed=42){
   set.seed(rn_seed)
   #Sample N random uniforms U

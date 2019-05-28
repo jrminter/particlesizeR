@@ -1,6 +1,6 @@
 Package: particlesizeR
 Title: Convenience functions for particle size analysis
-Version: 0.0.0.14
+Version: 0.0.0.15
 Authors@R: person("Minter", "John", email= "jrminter@gmail.com", role = c("aut", "cre"))
 Maintainer: John Minter <jrminter@gmail.com>
 Description: This package provides convenience functions for particle size analysis. 
@@ -8,7 +8,8 @@ Depends:
     R (>= 3.2.0),
     stats,
     mixtools,
-    ggplot2
+    ggplot2,
+    gridExtra
 Suggests:
     testthat,
     knitr

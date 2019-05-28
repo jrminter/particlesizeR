@@ -4,7 +4,7 @@
 \alias{ggplot_ecd}
 \title{Plot a histogram of Equivalent Circular Diameter data}
 \usage{
-ggplot_ecd(ecd, bin_width, title, xlab, ylab = "Counts",
+ggplot_ecd(ecd, bin_width, title, xlab = "ECD [nm]", ylab = "Counts",
   base_txt_pts = 12)
 }
 \arguments{
@@ -14,7 +14,7 @@ ggplot_ecd(ecd, bin_width, title, xlab, ylab = "Counts",
 
 \item{title}{String - A title for the plot}
 
-\item{xlab}{String - the label for the x axis, e.g. "diameter [nm]"}
+\item{xlab}{String - the label for the x axis, e.g. "ECD [nm]"}
 
 \item{ylab}{String - the y label. Default = "Counts"}
 
