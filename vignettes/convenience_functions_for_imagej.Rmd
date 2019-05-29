@@ -1,0 +1,52 @@
+---
+title: "Convenience functions for Fiji/ImageJ"
+author: "John Minter"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Convenience functions for Fiji/ImageJ}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, cache = F, echo = F, message = F, warning = F, tidy = F, comment=NA}
+library(knitr)
+options(width = 72)
+```
+Fiji/ImageJ has a particle analysis function called `Analyze Particles...`.
+
+To set the parameters in a macro we need to construct a string
+that we will name `ap_str2`: This was split to two lines for easier
+reading. It is one long line in the original... 
+
+```
+ap_str2 = "size=" + min_size + "-Infinity circularity=" + min_circ + "-1.00
+show=Overlay display exclude add in_situ"
+```
+
+The `min_size` variable is implemented as a `String` as is the `min_circ`
+variable. Our focus is on the `min-size` variable. It is the
+minimum area in square microns to detect. Let's consider that we want to
+compute the area if we wanted to detect particles greater than or equal
+to 5 **nm** in diameter.
+
+First, we would load the library
+
+```{r compute_area, message=FALSE}
+library(particlesizeR)
+```
+
+
+```{r comput_area, comment=NA}
+print(ecd_nm_to_area_um(5.0))
+
+```
+
+To work backwards, if we wanted to know the diameter in nm from
+an area cutoff of `7.854e-5` square microns, we would run
+
+```{r compute_diameter, comment=NA}
+print(area_um_to_ecd_nm(7.854e-5))
+```
+
+
